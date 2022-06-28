@@ -8,3 +8,7 @@ text-area {
 .mat-raised-button {
   margin-top: 20px;
 }
+
+mat-spinner {
+  margin: auto;
+}
