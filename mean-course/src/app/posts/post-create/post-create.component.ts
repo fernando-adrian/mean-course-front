@@ -37,7 +37,7 @@ export class PostCreateComponent implements OnInit {
       }),
       image: new FormControl(null, {
         validators: [Validators.required],
-        asyncValidators: [mimeType]
+        asyncValidators: [mimeType],
       }),
     });
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
@@ -51,10 +51,12 @@ export class PostCreateComponent implements OnInit {
             id: postData._id,
             title: postData.title,
             content: postData.content,
+            imagePath: postData.imagePath
           };
           this.form.setValue({
             title: this.post.title,
             content: this.post.content,
+            image: this.post.imagePath,
           });
         });
       } else {
@@ -68,12 +70,17 @@ export class PostCreateComponent implements OnInit {
 
     this.isLoading = true;
     if (this.mode === 'create') {
-      this.postsService.addPost(this.form.value.title, this.form.value.content);
+      this.postsService.addPost(
+        this.form.value.title,
+        this.form.value.content,
+        this.form.value.image
+      );
     } else {
       this.postsService.updatePost(
         this.postId!,
         this.form.value.title,
-        this.form.value.content
+        this.form.value.content,
+        this.form.value.image
       );
     }
     this.form.reset();
@@ -86,9 +93,9 @@ export class PostCreateComponent implements OnInit {
     });
     this.form.get('image')?.updateValueAndValidity();
     const reader = new FileReader();
-    reader.onload = ()=>{
+    reader.onload = () => {
       this.imagePreviewSrc = reader.result! as string;
-    }
+    };
     reader.readAsDataURL(file);
     console.log(file);
     console.log(this.form);
