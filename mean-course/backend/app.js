@@ -4,10 +4,11 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 
 const postsRoutes = require("./routes/posts");
+const userRoutes = require("./routes/user");
 
 mongoose
   .connect(
-    "mongodb+srv://max:v3JhmbijD0rJQTcn@atlascluster.beuhz.mongodb.net/node-angular?retryWrites=true&w=majority"
+    "mongodb+srv://max:v3JhmbijD0rJQTcn@atlascluster.beuhz.mongodb.net/node-angular?w=majority"
   )
   .then(() => {
     console.log("Connected to DB!!");
@@ -38,5 +39,6 @@ app.use((req, res, next) => {
 });
 
 app.use("/api/posts", postsRoutes);
+app.use("/api/user", userRoutes);
 
 module.exports = app;
