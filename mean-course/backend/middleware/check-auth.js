@@ -1,13 +1,17 @@
 const jwt = require("jsonwebtoken");
 
 module.exports = (req, res, next) => {
-  try{
+  try {
     const token = req.headers.authorization.split(" ")[1];
-    jwt.verify(token, "secret_this_should_be_really_long_string");
+    const decodedToken = jwt.verify(
+      token,
+      "secret_this_should_be_really_long_string"
+    );
+    req.userData = { email: decodedToken.email, userId: decodedToken.userId };
     next();
-  } catch(error){
+  } catch (error) {
     res.status(401).json({
-      message: "Auth Failed!! Error on token."
+      message: "Auth Failed!! Error on token.",
     });
   }
 };

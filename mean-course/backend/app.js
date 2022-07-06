@@ -8,7 +8,7 @@ const userRoutes = require("./routes/user");
 
 mongoose
   .connect(
-    "mongodb+srv://max:v3JhmbijD0rJQTcn@atlascluster.beuhz.mongodb.net/node-angular?w=majority"
+    "mongodb+srv://max:power@atlascluster.beuhz.mongodb.net/node-angular?w=majority"
   )
   .then(() => {
     console.log("Connected to DB!!");
