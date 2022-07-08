@@ -1,6 +1,7 @@
 {
   "env": {
-    "MONGO_ATLAS_PW": "power",
+    "MONGO_ATLAS_USER": "max",
+    "MONGO_ATLAS_PASSWORD": "power",
     "JWT_KEY": "secret_this_should_be_really_long_string"
   }
 }
